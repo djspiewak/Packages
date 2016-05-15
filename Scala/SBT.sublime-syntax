@@ -1,0 +1,65 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: SBT
+file_extensions:
+  - sbt
+scope: source.sbt
+contexts:
+  main:
+    - include: properties
+    - include: operators
+    - include: keywords
+    - include: 'scope:source.scala'
+
+  properties:
+    - match: '^([A-Z][a-zA-Z0-9_]*\.)?([a-zA-Z_][a-zA-Z0-9_]*)(\s+(in)\s+([^\s]+|\([^\)]+\)))?\s+(:=|\+=|\+\+=|<<=|<\+\+=|<\+=|~=)'
+      captures:
+        1: entity.name.class
+        2: variable.parameter
+        4: keyword.declaration.sbt
+        5: entity.name.class
+        6: keyword.declaration.sbt
+    - match: '^([a-z_][a-zA-Z0-9_]*\.)?([a-zA-Z_][a-zA-Z0-9_]*)(\s+(in)\s+([^\s]+|\([^\)]+\)))?\s+(:=|\+=|\+\+=|<<=|<\+\+=|<\+=|~=)'
+      captures:
+        2: variable.parameter
+        4: keyword.declaration.sbt
+        5: entity.name.class
+        6: keyword.declaration.sbt
+
+  operators:
+    - match: '\('   # required to override the parameter list madness in the Scala mode
+      push:
+        - match: '\)'
+          pop: true
+        - match: '([a-zA-Z$_][a-zA-Z0-9$_]*)\s*:\s*'
+          captures:
+            1: variable.parameter
+            2: entity.name.class
+        - include: main
+    - match: '%%|%'
+      scope: storage.type.primitive.sbt
+    - match: (?<!\\)"
+      push:
+        - meta_scope: string.quoted.double.scala
+        - match: '"'
+          pop: true
+        - match: \n
+          scope: invalid.string.newline
+        - match: \\.
+          scope: constant.character.escape.scala
+        - match: '\b(test|default|runtime|%|*)\b'
+          scope: constant.language.sbt
+        - match: '%|\*'
+          scope: constant.language.sbt
+        - match: (->|[+=;\[\]\(\)])
+          scope: keyword.declaration.sbt
+
+
+  keywords:
+    - match: '\b([^\s\.]+)\.(value)\b'
+      captures:
+        1: variable.parameter
+        2: keyword.control.flow.jump.sbt
+    - match: '\b(settingKey|taskKey)'
+      scope: storage.type.primitive.sbt
