@@ -48,11 +48,11 @@ contexts:
           scope: invalid.string.newline
         - match: \\.
           scope: constant.character.escape.scala
-        - match: '\b(test|default|runtime|%|*)\b'
+        - match: '\b(test|default|runtime|compile|%|*)\b'
           scope: constant.language.sbt
         - match: '%|\*'
           scope: constant.language.sbt
-        - match: (->|[+=;\[\]\(\)])
+        - match: (->|[+=;\[\]\(\),])
           scope: keyword.declaration.sbt
 
 
