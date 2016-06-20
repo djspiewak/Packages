@@ -61,5 +61,5 @@ contexts:
       captures:
         1: variable.parameter
         2: keyword.control.flow.jump.sbt
-    - match: '\b(settingKey|taskKey)'
+    - match: '\b(settingKey|taskKey|project)'
       scope: storage.type.primitive.sbt
