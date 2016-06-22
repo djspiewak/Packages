@@ -28,15 +28,6 @@ contexts:
         6: keyword.declaration.sbt
 
   operators:
-    - match: '\('   # required to override the parameter list madness in the Scala mode
-      push:
-        - match: '\)'
-          pop: true
-        - match: '([a-zA-Z$_][a-zA-Z0-9$_]*)\s*:\s*'
-          captures:
-            1: variable.parameter
-            2: entity.name.class
-        - include: main
     - match: '%%|%'
       scope: storage.type.primitive.sbt
     - match: (?<!\\)"
@@ -54,7 +45,6 @@ contexts:
           scope: constant.language.sbt
         - match: (->|[+=;\[\]\(\),])
           scope: keyword.declaration.sbt
-
 
   keywords:
     - match: '\b([^\s\.]+)\.(value)\b'
