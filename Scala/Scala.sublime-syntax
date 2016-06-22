@@ -4,7 +4,6 @@
 name: Scala
 file_extensions:
   - scala
-  - sbt
 scope: source.scala
 variables:
   # From http://www.scala-lang.org/files/archive/spec/2.11/01-lexical-syntax.html
