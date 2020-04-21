@@ -2225,3 +2225,11 @@ a: B
 //                         ^ punctuation.section.group.end.scala
 //                            ^ keyword.operator.or.scala
 }
+
+f[F[Throwable, +?]]
+//             ^ keyword.operator.bound.scala
+//              ^ variable.language.hole.scala
+
+f[F[Throwable, -?]]
+//             ^ keyword.operator.bound.scala
+//              ^ variable.language.hole.scala
