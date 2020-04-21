@@ -2260,3 +2260,8 @@ completed: F[_ >: A] => B)
    type A
 // ^^^^ storage.type.scala
 //      ^ entity.name.type.scala
+
+    _()
+//  ^ variable.language.underscore.scala
+//   ^ punctuation.section.group.begin.scala
+//    ^ punctuation.section.group.end.scala
