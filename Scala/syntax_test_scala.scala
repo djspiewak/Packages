@@ -2254,3 +2254,9 @@ new Foo()() with Bar
 
 completed: F[_ >: A] => B)
 //             ^^ keyword.operator.bound.scala
+
+{
+   type Apply = F @uncheckedVariance
+   type A
+// ^^^^ storage.type.scala
+//      ^ entity.name.type.scala
